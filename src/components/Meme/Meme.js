@@ -8,11 +8,11 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const Meme = (props) => {
+  console.log(props)
   const [meme, setMeme] = useState(null)
   const [deleted, setDeleted] = useState(false)
 
   useEffect(() => {
-    console.log(props)
     axios({
       url: `${apiUrl}/memes/${props.match.params.id}`,
       method: 'GET',
@@ -46,7 +46,7 @@ const Meme = (props) => {
   return (
     <Layout>
       <h4>{meme.title}</h4>
-      <img src=""/>
+      <img src={`${meme.memeUrl}`} alt="meme"/>
       <button onClick={destroy}>Delete Meme</button>
       <Link to={`/memes/${props.match.params.id}/edit`}>
         <button>Edit</button>

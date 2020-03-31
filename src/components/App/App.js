@@ -57,7 +57,7 @@ class App extends Component {
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/memes/:id' render={({ match }) => (
-            <Meme match={match} msgAlert={this.msgAlert} />
+            <Meme match={match} user={user} msgAlert={this.msgAlert} />
           )} />
           <AuthenticatedRoute user={user} exact path='/meme-create' render={() => (
             <MemeCreate msgAlert={this.msgAlert} user={user} />
