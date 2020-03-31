@@ -27,7 +27,10 @@ const Meme = (props) => {
   const destroy = () => {
     axios({
       url: `${apiUrl}/memes/${props.match.params.id}`,
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      }
     })
       .then(() => setDeleted(true))
       .catch(console.error)

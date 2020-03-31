@@ -8,8 +8,11 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import Memes from '../Memes/Memes'
 import Meme from '../Meme/Meme'
+import MemeEdit from '../MemeEdit/MemeEdit'
 import MemeCreate from '../MemeCreate/MemeCreate'
+import Nav from '../shared/Nav'
 
 class App extends Component {
   constructor () {
@@ -50,14 +53,23 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
+          <Route path='/' render={() => (
+            <Nav msgAlert={this.msgAlert} user={user} />
+          )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
+          <AuthenticatedRoute user={user} exact path='/memes' render={({ match }) => (
+            <Memes match={match} user={user} msgAlert={this.msgAlert} />
+          )} />
           <AuthenticatedRoute user={user} exact path='/memes/:id' render={({ match }) => (
             <Meme match={match} user={user} msgAlert={this.msgAlert} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/memes/:id/edit' render={({ match }) => (
+            <MemeEdit match={match} user={user} msgAlert={this.msgAlert} />
           )} />
           <AuthenticatedRoute user={user} exact path='/meme-create' render={() => (
             <MemeCreate msgAlert={this.msgAlert} user={user} />
