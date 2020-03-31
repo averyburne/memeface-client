@@ -8,6 +8,8 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import Meme from '../Meme/Meme'
+import MemeCreate from '../MemeCreate/MemeCreate'
 
 class App extends Component {
   constructor () {
@@ -53,6 +55,12 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/meme/:id' render={() => (
+            <Meme msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/meme-create' render={() => (
+            <MemeCreate msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
