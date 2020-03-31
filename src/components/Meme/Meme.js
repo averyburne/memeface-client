@@ -12,7 +12,14 @@ const Meme = (props) => {
   const [deleted, setDeleted] = useState(false)
 
   useEffect(() => {
-    axios(`${apiUrl}/memes/${props.match.params.id}`)
+    console.log(props)
+    axios({
+      url: `${apiUrl}/memes/${props.match.params.id}`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      }
+    })
       .then(res => setMeme(res.data.meme))
       .catch(console.error)
   }, [])
@@ -39,7 +46,7 @@ const Meme = (props) => {
   return (
     <Layout>
       <h4>{meme.title}</h4>
-      <img src="meme.memeUrl"/>
+      <img src=""/>
       <button onClick={destroy}>Delete Meme</button>
       <Link to={`/memes/${props.match.params.id}/edit`}>
         <button>Edit</button>

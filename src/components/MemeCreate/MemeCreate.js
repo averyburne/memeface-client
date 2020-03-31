@@ -26,8 +26,7 @@ const MemeCreate = props => {
         Authorization: `Bearer ${props.user.token}`
       }
     })
-      .then(res => console.log(res.data.meme._id))
-      .then(res => setCreatedMemeId(res.data.meme.id))
+      .then(res => setCreatedMemeId(res.data.meme._id))
       .catch(console.error)
   }
   if (createdMemeId) {
