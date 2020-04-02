@@ -17,14 +17,20 @@ const MemeCreate = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
+    const bodyFormData = new FormData(event.target)
+    console.log(bodyFormData)
 
     axios({
       url: `${apiUrl}/memes`,
       method: 'POST',
-      data: { meme },
+      data: bodyFormData,
       headers: {
-        Authorization: `Bearer ${props.user.token}`
-      }
+        Authorization: `Bearer ${props.user.token}`,
+        'Content-Type': 'multipart/form-data'
+        // 'Content-Type': 'multipart/form-data'
+      },
+      processData: false,
+      contentType: false
     })
       .then(res => setCreatedMemeId(res.data.meme._id))
       .catch(console.error)
