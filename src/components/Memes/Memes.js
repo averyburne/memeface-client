@@ -23,7 +23,7 @@ const Memes = props => {
 
   const memesJsx = memes.map(meme => (
     <li key={meme._id}>
-      <Link to={`/memes/${meme._id}`}>{meme.title}</Link>
+      <Link to={`/memes/${meme._id}`}><img src={`${meme.memeUrl}`} alt="meme"/></Link>
     </li>
   ))
 
