@@ -6,44 +6,52 @@ import Layout from '../shared/Layout'
 import MemeForm from '../shared/MemeForm'
 
 const MemeCreate = props => {
-  const [meme, setMeme] = useState({ title: '', memeUrl: '' })
+  // const [title, setTitle] = useState('')
+  const [file, setFile] = useState([])
   const [createdMemeId, setCreatedMemeId] = useState(null)
+  const formData = new FormData()
 
-  const handleChange = event => {
-  // const updatedField = { [event.target.name]: event.target.value }
-  // const editedMeme = Object.assign(meme, updatedField)
-    setMeme({ ...meme, [event.target.name]: event.target.value })
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    formData.append('file', file)
+    // formData.append('title', title)
+    fileUpload(file)
+      .then((response) => {
+        setCreatedMemeId(response.data.meme._id)
+      })
   }
 
-  const handleSubmit = event => {
-    event.preventDefault()
-    const bodyFormData = new FormData(event.target)
-    console.log(bodyFormData)
+  const onChange = e => {
+    // const form = e.target.files[0]
+    // const data = new FormData(form)
+    console.log(e.target.files[0])
+    setFile(file => (e.target.files[0]))
+    // setTitle(title:e.target.files[0].name)
+  }
 
+  if (createdMemeId) {
+    return <Redirect to={`/memes/${createdMemeId}`} />
+  }
+
+  const fileUpload = data => {
     axios({
-      url: `${apiUrl}/memes`,
+      url: `${apiUrl} + /memes`,
       method: 'POST',
-      data: bodyFormData,
+      data: formData,
+      contentType: false,
+      processData: false,
       headers: {
         Authorization: `Bearer ${props.user.token}`,
         'Content-Type': 'multipart/form-data'
-        // 'Content-Type': 'multipart/form-data'
-      },
-      processData: false,
-      contentType: false
+      }
     })
-      .then(res => setCreatedMemeId(res.data.meme._id))
-      .catch(console.error)
-  }
-  if (createdMemeId) {
-    return <Redirect to={`/memes/${createdMemeId}`} />
   }
 
   return (
     <Layout>
       <MemeForm
-        meme={meme}
-        handleChange={handleChange}
+        // meme={meme}
+        onChange={onChange}
         handleSubmit={handleSubmit}
         cancelPath="/"
       />
