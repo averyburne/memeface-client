@@ -6,7 +6,7 @@
 ## Deployed Site
 [Website](https://averyburne.github.io/memeface-client/#/)
 
-! [Screenshot of App] (/public/img/memeface-screenshot.png?raw=true)
+![Screenshot of App] (/public/img/memeface-screenshot.png?raw=true)
 
 ## Technologies Used
 - JavaScript
