@@ -5,7 +5,7 @@ const MemeForm = ({ meme, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
     <label>Title</label>
     <input
-      placeholder="A Wonderful Film"
+      placeholder="Enter the title"
       value={meme.title}
       name="title"
       onChange={handleChange}
