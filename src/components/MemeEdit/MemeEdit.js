@@ -12,7 +12,7 @@ const MemeEdit = (props) => {
 
   useEffect(() => {
     axios(`${apiUrl}/memes/${props.match.params.id}`)
-      .then(res => setMeme(res.data.movie))
+      .then(res => setMeme(res.data.meme))
       .catch(console.error)
   }, [])
 
