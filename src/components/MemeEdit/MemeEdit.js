@@ -18,7 +18,7 @@ const MemeEdit = (props) => {
 
   const handleChange = event => {
     event.persist()
-    setMeme(movie => ({ ...meme, [event.target.name]: event.target.value }))
+    setMeme(meme => ({ ...meme, [event.target.name]: event.target.value }))
   }
 
   const handleSubmit = event => {

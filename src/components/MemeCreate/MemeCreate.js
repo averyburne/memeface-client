@@ -26,6 +26,7 @@ const MemeCreate = props => {
     post(url, formData, config)
       .then((response) => {
         setCreatedMemeId(response.data.meme._id)
+        console.log(response.data.meme)
       })
   }
 
@@ -36,6 +37,7 @@ const MemeCreate = props => {
   return (
     <form onSubmit={onFormSubmit} encType="multipart/form-data">
       <h1>File Upload</h1>
+      <input type="text" name='name' required/>
       <input type="file" name='file' />
       <button type="submit">Upload</button>
     </form>
