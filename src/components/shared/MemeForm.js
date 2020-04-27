@@ -1,22 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const MemeForm = ({ meme, handleSubmit, handleChange, cancelPath }) => (
-  <form onSubmit={handleSubmit}>
+const MemeForm = ({ meme, handleSubmit, onChange, cancelPath }) => (
+  <form onSubmit={handleSubmit} encType="multipart/form-data">
     <label>Title</label>
     <input
       placeholder="Enter the title"
       value={meme.title}
       name="title"
-      onChange={handleChange}
+      onChange={onChange}
     />
 
-    <label>Url</label>
+    <label>Meme</label>
     <input
-      placeholder="www.memeaddress.com"
-      value={meme.memeUrl}
-      name="memeUrl"
-      onChange={handleChange}
+      type="file"
+      // value={meme.file}
+      name="file"
+      onChange={onChange}
+      encType="multipart/form-data"
     />
 
     <button type="submit">Submit</button>
