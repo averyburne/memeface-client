@@ -4,7 +4,6 @@ import React from 'react'
 // <Link to='/'>Home</Link>
 // <Link to='/memes'>Memes</Link>
 // <Link to='/create-meme'>Create Meme</Link>
-
 const Nav = () => (
   <nav>
 
