@@ -38,6 +38,7 @@ class App extends Component {
     return (
       <Fragment>
         <Header user={user} />
+        <h1>Welcome to Memeface</h1>
         {msgAlerts.map((msgAlert, index) => (
           <AutoDismissAlert
             key={index}
