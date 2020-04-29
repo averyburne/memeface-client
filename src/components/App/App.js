@@ -38,7 +38,6 @@ class App extends Component {
     return (
       <Fragment>
         <Header user={user} />
-        <h1>Welcome to Memeface</h1>
         {msgAlerts.map((msgAlert, index) => (
           <AutoDismissAlert
             key={index}
@@ -54,7 +53,7 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
-          <Route path='/' render={() => (
+          <Route exact path='/' render={() => (
             <Nav msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (

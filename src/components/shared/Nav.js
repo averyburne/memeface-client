@@ -5,9 +5,13 @@ import React from 'react'
 // <Link to='/memes'>Memes</Link>
 // <Link to='/create-meme'>Create Meme</Link>
 const Nav = () => (
-  <nav>
-
-  </nav>
+  <div>
+    <h1>Welcome to Memeface</h1>
+    <ul>
+      <li>Checkout out some memes</li>
+      <li>Upload your own meme</li>
+    </ul>
+  </div>
 )
 
 export default Nav
