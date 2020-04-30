@@ -4,3 +4,11 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+.fileUpload {
+  margin-left: 10px;
+}
+
+.fileUpload:hover {
+  border: 2px solid rgba(40, 185, 90, 0.8)
+}

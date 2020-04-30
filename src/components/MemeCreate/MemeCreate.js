@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { post } from 'axios'
 import apiUrl from '../../apiConfig'
-import FileSelect from '../shared/FileSelectStyles'
 // import Layout from '../shared/Layout'
 // import MemeForm from '../shared/MemeForm'
 
@@ -39,7 +38,7 @@ const MemeCreate = props => {
     <form onSubmit={onFormSubmit} encType="multipart/form-data">
       <h1>File Upload</h1>
       <input type="text" name='name' required/>
-      <FileSelect />
+      <input className="fileUpload" type="file" name='file' required/>
       <button type="submit">Upload</button>
     </form>
   )
