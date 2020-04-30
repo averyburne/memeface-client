@@ -40,9 +40,9 @@ const Meme = (props) => {
     if (meme.owner === props.user._id) {
       input =
       <div>
-        <button onClick={destroy}>Delete Meme</button>
+        <button className="btn-danger deleteMeme" onClick={destroy}>Delete Meme</button>
         <Link to={`/memes/${props.match.params.id}/edit`}>
-          <button>Edit</button>
+          <button className="btn-warning editMeme">Edit</button>
         </Link>
       </div>
     } else {

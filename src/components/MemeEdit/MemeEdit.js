@@ -43,9 +43,9 @@ const MemeEdit = (props) => {
 
   return (
     <form onSubmit={handleSubmit} encType="multipart/form-data">
-      <h1>File Upload</h1>
-      <input type="text" name='name' required/>
-      <button type="submit">Upload</button>
+      <h1>Update Your Meme</h1>
+      <input placeholder="Enter your new title" type="text" name='name' required/>
+      <button className="btn-primary submitUpdateButton" type="submit">Update</button>
     </form>
   )
 }

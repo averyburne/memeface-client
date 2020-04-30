@@ -37,9 +37,9 @@ const MemeCreate = props => {
   return (
     <form onSubmit={onFormSubmit} encType="multipart/form-data">
       <h1>File Upload</h1>
-      <input type="text" name='name' required/>
-      <input className="fileUpload" type="file" name='file' required/>
-      <button type="submit">Upload</button>
+      <input placeholder="Enter a title" type="text" name='name' required/>
+      <input className="fileSelect" type="file" name='file' required/>
+      <button className="btn-primary" type="submit">Upload</button>
     </form>
   )
 }
