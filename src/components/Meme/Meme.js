@@ -65,7 +65,9 @@ const Meme = (props) => {
       <h4>{meme.title}</h4>
       <img src={`${meme.memeUrl}`} height="200" width="200" alt="meme"/>
       {input}
-      <Link to="/memes">Back to all memes</Link>
+      <div>
+        <Link to="/memes">Back to all memes</Link>
+      </div>
     </Layout>
   )
 }
