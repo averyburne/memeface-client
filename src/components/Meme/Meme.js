@@ -9,6 +9,7 @@ import apiUrl from '../../apiConfig'
 
 const Meme = (props) => {
   const [meme, setMeme] = useState(null)
+  // const [comment, setComment] = useState(null)
   const [deleted, setDeleted] = useState(false)
   let input
 
@@ -23,6 +24,18 @@ const Meme = (props) => {
       .then(res => setMeme(res.data.meme))
       .catch(console.error)
   }, [])
+
+  // const leaveComment = () => {
+  //   axios({
+  //     url: `${apiUrl}/comments`,
+  //     method: 'POST',
+  //     headers: {
+  //       Authorization: `Bearer ${props.user.token}`
+  //     }
+  //   })
+  //     .then(res => setComment(res.data.comment))
+  //     .catch(console.error)
+  // }
 
   const destroy = () => {
     axios({
@@ -59,6 +72,9 @@ const Meme = (props) => {
       { pathname: '/', state: { msg: 'Meme succesfully deleted!' } }
     } />
   }
+
+  // <div>{comment.content}</div>
+  // <button className='btn-primary' onClick={leaveComment}>Leave Comment</button>
 
   return (
     <Layout>
