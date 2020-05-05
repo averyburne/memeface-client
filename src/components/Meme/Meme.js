@@ -9,7 +9,7 @@ import apiUrl from '../../apiConfig'
 
 const Meme = (props) => {
   const [meme, setMeme] = useState(null)
-  // const [comment, setComment] = useState(null)
+  const [comment, setComment] = useState(null)
   const [deleted, setDeleted] = useState(false)
   let input
 
@@ -25,17 +25,23 @@ const Meme = (props) => {
       .catch(console.error)
   }, [])
 
-  // const leaveComment = () => {
-  //   axios({
-  //     url: `${apiUrl}/comments`,
-  //     method: 'POST',
-  //     headers: {
-  //       Authorization: `Bearer ${props.user.token}`
-  //     }
-  //   })
-  //     .then(res => setComment(res.data.comment))
-  //     .catch(console.error)
-  // }
+  const leaveComment = (event) => {
+    const data = {
+      content: event.target.content.value,
+      meme: meme._id
+    }
+    console.log(data)
+    axios({
+      url: `${apiUrl}/comments`,
+      method: 'POST',
+      data: data,
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      }
+    })
+      .then(res => setComment(res.data.comment))
+      .catch(console.error)
+  }
 
   const destroy = () => {
     axios({
@@ -69,17 +75,19 @@ const Meme = (props) => {
 
   if (deleted) {
     return <Redirect to={
-      { pathname: '/', state: { msg: 'Meme succesfully deleted!' } }
+      { pathname: '/memes', state: { msg: 'Meme succesfully deleted!' } }
     } />
   }
-
-  // <div>{comment.content}</div>
-  // <button className='btn-primary' onClick={leaveComment}>Leave Comment</button>
 
   return (
     <Layout>
       <h4>{meme.title}</h4>
       <img src={`${meme.memeUrl}`} height="400" width="400" alt="meme"/>
+      <form onSubmit={leaveComment}>
+        <input type="text" placeholder="Leave a comment" name="content"/>
+        <button className='btn-primary' type="submit">Leave Comment</button>
+      </form>
+      <div>{comment ? comment.content : ''}</div>
       {input}
       <div>
         <Link to="/memes">Back to all memes</Link>
