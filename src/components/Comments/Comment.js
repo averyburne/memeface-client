@@ -1,0 +1,69 @@
+import React, { useState, useEffect } from 'react'
+
+// Import Axios:
+import axios from 'axios'
+// Import apiConfig:
+import apiUrl from '../../apiConfig'
+
+const Comment = (props) => {
+  const [comment, setComment] = useState(null)
+  const [comments, setComments] = useState(null)
+  let commentsJSX
+
+  useEffect(() => {
+    axios({
+      url: `${apiUrl}/comments`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      }
+    })
+      .then(res => setComments((res.data.comments).filter(comment => comment.meme === props.meme._id)))
+      .catch(console.error)
+  }, [])
+
+  if (comments) {
+    // const filteredComments = comments.map(comment => comment.content)
+    commentsJSX = comments.map(comment => (
+      <li key={comment._id}>
+        {comment.content}
+      </li>
+    ))
+  }
+
+  const leaveComment = (event) => {
+    const data = {
+      content: event.target.content.value,
+      meme: props.meme._id,
+      owner: props.user._id
+    }
+    console.log(data)
+    axios({
+      url: `${apiUrl}/comments`,
+      method: 'POST',
+      data: data,
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      }
+    })
+      .then(res => setComment(res.data.comment))
+      .catch(console.error)
+  }
+
+  console.log(comments)
+  console.log(props.user)
+
+  return (
+    <div>
+      <p>Comments:</p>
+      {commentsJSX}
+      <div>{comment ? comment.content : ''}</div>
+      <form onSubmit={leaveComment}>
+        <input type="text" placeholder="Leave a comment" name="content"/>
+        <button className='btn-primary' type="submit">Leave Comment</button>
+      </form>
+    </div>
+  )
+}
+
+export default Comment

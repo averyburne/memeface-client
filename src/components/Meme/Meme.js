@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Layout from '../shared/Layout'
+import Comment from '../Comments/Comment'
 
 // Import Axios:
 import axios from 'axios'
@@ -56,7 +57,7 @@ const Meme = (props) => {
 
   if (deleted) {
     return <Redirect to={
-      { pathname: '/', state: { msg: 'Meme succesfully deleted!' } }
+      { pathname: '/memes', state: { msg: 'Meme succesfully deleted!' } }
     } />
   }
 
@@ -64,6 +65,7 @@ const Meme = (props) => {
     <Layout>
       <h4>{meme.title}</h4>
       <img src={`${meme.memeUrl}`} height="400" width="400" alt="meme"/>
+      <Comment meme={meme} user={props.user}/>
       {input}
       <div>
         <Link to="/memes">Back to all memes</Link>

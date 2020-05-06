@@ -26,7 +26,6 @@ const MemeCreate = props => {
     post(url, formData, config)
       .then((response) => {
         setCreatedMemeId(response.data.meme._id)
-        console.log(response.data.meme)
       })
   }
 
