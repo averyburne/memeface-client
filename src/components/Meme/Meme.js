@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Layout from '../shared/Layout'
+import Comment from '../Comments/Comment'
 
 // Import Axios:
 import axios from 'axios'
@@ -9,7 +10,6 @@ import apiUrl from '../../apiConfig'
 
 const Meme = (props) => {
   const [meme, setMeme] = useState(null)
-  const [comment, setComment] = useState(null)
   const [deleted, setDeleted] = useState(false)
   let input
 
@@ -24,24 +24,6 @@ const Meme = (props) => {
       .then(res => setMeme(res.data.meme))
       .catch(console.error)
   }, [])
-
-  const leaveComment = (event) => {
-    const data = {
-      content: event.target.content.value,
-      meme: meme._id
-    }
-    console.log(data)
-    axios({
-      url: `${apiUrl}/comments`,
-      method: 'POST',
-      data: data,
-      headers: {
-        Authorization: `Bearer ${props.user.token}`
-      }
-    })
-      .then(res => setComment(res.data.comment))
-      .catch(console.error)
-  }
 
   const destroy = () => {
     axios({
@@ -83,11 +65,7 @@ const Meme = (props) => {
     <Layout>
       <h4>{meme.title}</h4>
       <img src={`${meme.memeUrl}`} height="400" width="400" alt="meme"/>
-      <form onSubmit={leaveComment}>
-        <input type="text" placeholder="Leave a comment" name="content"/>
-        <button className='btn-primary' type="submit">Leave Comment</button>
-      </form>
-      <div>{comment ? comment.content : ''}</div>
+      <Comment meme={meme} user={props.user}/>
       {input}
       <div>
         <Link to="/memes">Back to all memes</Link>
