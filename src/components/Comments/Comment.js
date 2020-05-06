@@ -6,7 +6,6 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const Comment = (props) => {
-  // const [comment, setComment] = useState(null)
   const [comments, setComments] = useState(null)
   let commentsJSX
 
@@ -27,7 +26,6 @@ const Comment = (props) => {
   }, [])
 
   if (comments) {
-    // const filteredComments = comments.map(comment => comment.content)
     commentsJSX = comments.map(comment => (
       <li key={comment._id}>
         {comment.content}
@@ -55,17 +53,13 @@ const Comment = (props) => {
       .catch(console.error)
   }
 
-  console.log(comments)
-  console.log(props.user)
-  // <div>{comment ? comment.content : ''}</div>
-
   return (
     <div>
       <p>Comments:</p>
       {commentsJSX}
       <form onSubmit={leaveComment}>
-        <input type="text" placeholder="Leave a comment" name="content"/>
-        <button className='btn-primary' type="submit">Leave Comment</button>
+        <input type="text" className="comment-input" placeholder="Leave a comment" name="content"/>
+        <button className='btn-primary comment-btn' type="submit">Leave Comment</button>
       </form>
     </div>
   )
