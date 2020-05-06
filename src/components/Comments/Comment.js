@@ -27,7 +27,7 @@ const Comment = (props) => {
 
   if (comments) {
     commentsJSX = comments.map(comment => (
-      <li key={comment._id}>
+      <li className="comment-item" key={comment._id}>
         {comment.content}
       </li>
     ))
@@ -55,7 +55,7 @@ const Comment = (props) => {
 
   return (
     <div>
-      <p>Comments:</p>
+      <p className="comment-header">Comments:</p>
       {commentsJSX}
       <form onSubmit={leaveComment}>
         <input type="text" className="comment-input" placeholder="Leave a comment" name="content"/>
