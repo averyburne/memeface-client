@@ -32,6 +32,7 @@ const Comment = (props) => {
   }
 
   const leaveComment = (event) => {
+    event.preventDefault()
     const data = {
       content: event.target.content.value,
       meme: props.meme._id,
