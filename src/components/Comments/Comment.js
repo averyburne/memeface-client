@@ -27,7 +27,7 @@ const Comment = (props) => {
 
   if (comments) {
     commentsJSX = comments.map(comment => (
-      <li className="comment-item" key={comment._id}>
+      <li className="col-6 comment-item" key={comment._id}>
         {comment.content}
       </li>
     ))
