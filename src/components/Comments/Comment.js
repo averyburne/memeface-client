@@ -6,11 +6,11 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const Comment = (props) => {
-  const [comment, setComment] = useState(null)
+  // const [comment, setComment] = useState(null)
   const [comments, setComments] = useState(null)
   let commentsJSX
 
-  useEffect(() => {
+  const getComments = () => {
     axios({
       url: `${apiUrl}/comments`,
       method: 'GET',
@@ -20,6 +20,10 @@ const Comment = (props) => {
     })
       .then(res => setComments((res.data.comments).filter(comment => comment.meme === props.meme._id)))
       .catch(console.error)
+  }
+
+  useEffect(() => {
+    getComments()
   }, [])
 
   if (comments) {
@@ -47,18 +51,18 @@ const Comment = (props) => {
         Authorization: `Bearer ${props.user.token}`
       }
     })
-      .then(res => setComment(res.data.comment))
+      .then(getComments())
       .catch(console.error)
   }
 
   console.log(comments)
   console.log(props.user)
+  // <div>{comment ? comment.content : ''}</div>
 
   return (
     <div>
       <p>Comments:</p>
       {commentsJSX}
-      <div>{comment ? comment.content : ''}</div>
       <form onSubmit={leaveComment}>
         <input type="text" placeholder="Leave a comment" name="content"/>
         <button className='btn-primary' type="submit">Leave Comment</button>
