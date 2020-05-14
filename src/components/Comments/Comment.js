@@ -45,9 +45,10 @@ const Comment = (props) => {
           {comment.content}
         </li>
         {(comment.owner === props.user._id) &&
-          <span>
+          <span className="comment-delete-section">
             <button value={comment._id} className="btn-danger deleteMeme" onClick={destroy} >Delete Comment</button>
-            <button className="btn-warning editMeme">Edit</button>
+            {// <button className="btn-warning editMeme">Edit</button>
+            }
           </span>
         }
       </div>
