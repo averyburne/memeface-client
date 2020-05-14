@@ -21,9 +21,12 @@ const Comment = (props) => {
       .then(res => setComments((res.data.comments).filter(comment => comment.meme === props.meme._id)))
       .catch(console.error)
   }
+  useEffect(() => {
+    getComments()
+  }, [])
 
   const destroy = (event) => {
-    console.log(event.target.value)
+    event.preventDefault()
     axios({
       url: `${apiUrl}/comments/${event.target.value}`,
       method: 'DELETE',
@@ -35,10 +38,6 @@ const Comment = (props) => {
       .catch(console.error)
   }
 
-  useEffect(() => {
-    getComments()
-  }, [])
-
   if (comments) {
     commentsJSX = comments.map(comment => (
       <div key={comment._id}>
@@ -47,16 +46,19 @@ const Comment = (props) => {
         </li>
         {(comment.owner === props.user._id) &&
           <span>
-            <div>
-              <button value={comment._id} className="btn-danger deleteMeme" onClick={destroy} >Delete Comment</button>
-              <button className="btn-warning editMeme">Edit</button>
-            </div>
+            <button value={comment._id} className="btn-danger deleteMeme" onClick={destroy} >Delete Comment</button>
+            <button className="btn-warning editMeme">Edit</button>
           </span>
         }
       </div>
     ))
     console.log(comments)
     console.log(props.user._id)
+  }
+
+  if (deleted) {
+    getComments()
+    setDeleted(null)
   }
 
   const leaveComment = (event) => {
@@ -76,10 +78,6 @@ const Comment = (props) => {
     })
       .then(getComments())
       .catch(console.error)
-  }
-
-  if (deleted) {
-    console.log('peepeepoopoo')
   }
 
   return (
