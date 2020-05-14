@@ -27,11 +27,24 @@ const Comment = (props) => {
 
   if (comments) {
     commentsJSX = comments.map(comment => (
-      <li className="col-6 comment-item" key={comment._id}>
-        {comment.content}
-      </li>
+      <div key={comment._id}>
+        <li className="col-6 comment-item" key={comment._id}>
+          {comment.content}
+        </li>
+        <span>
+          {comment.updatedAt}
+        </span>
+      </div>
     ))
+    console.log(comments)
+    console.log(props.user._id)
   }
+
+  // const deleteJSX =
+  //   <div>
+  //     <button className="btn-danger deleteMeme" /* onClick={destroy} */>Delete Meme</button>
+  //     <button className="btn-warning editMeme">Edit</button>
+  //   </div>
 
   const leaveComment = (event) => {
     event.preventDefault()
@@ -40,7 +53,6 @@ const Comment = (props) => {
       meme: props.meme._id,
       owner: props.user._id
     }
-    console.log(data)
     axios({
       url: `${apiUrl}/comments`,
       method: 'POST',
