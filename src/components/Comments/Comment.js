@@ -7,6 +7,7 @@ import apiUrl from '../../apiConfig'
 
 const Comment = (props) => {
   const [comments, setComments] = useState(null)
+  const [deleted, setDeleted] = useState(null)
   let commentsJSX
 
   const getComments = () => {
@@ -21,15 +22,22 @@ const Comment = (props) => {
       .catch(console.error)
   }
 
+  const destroy = (event) => {
+    console.log(event.target.value)
+    axios({
+      url: `${apiUrl}/comments/${event.target.value}`,
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      }
+    })
+      .then(() => setDeleted(true))
+      .catch(console.error)
+  }
+
   useEffect(() => {
     getComments()
   }, [])
-
-  const deleteJSX =
-    <div>
-      <button className="btn-danger deleteMeme" /* onClick={destroy} */>Delete Meme</button>
-      <button className="btn-warning editMeme">Edit</button>
-    </div>
 
   if (comments) {
     commentsJSX = comments.map(comment => (
@@ -38,7 +46,12 @@ const Comment = (props) => {
           {comment.content}
         </li>
         {(comment.owner === props.user._id) &&
-          <span>{deleteJSX}</span>
+          <span>
+            <div>
+              <button value={comment._id} className="btn-danger deleteMeme" onClick={destroy} >Delete Comment</button>
+              <button className="btn-warning editMeme">Edit</button>
+            </div>
+          </span>
         }
       </div>
     ))
@@ -63,6 +76,10 @@ const Comment = (props) => {
     })
       .then(getComments())
       .catch(console.error)
+  }
+
+  if (deleted) {
+    console.log('peepeepoopoo')
   }
 
   return (
