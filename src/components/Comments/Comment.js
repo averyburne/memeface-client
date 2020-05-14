@@ -25,26 +25,26 @@ const Comment = (props) => {
     getComments()
   }, [])
 
+  const deleteJSX =
+    <div>
+      <button className="btn-danger deleteMeme" /* onClick={destroy} */>Delete Meme</button>
+      <button className="btn-warning editMeme">Edit</button>
+    </div>
+
   if (comments) {
     commentsJSX = comments.map(comment => (
       <div key={comment._id}>
         <li className="col-6 comment-item" key={comment._id}>
           {comment.content}
         </li>
-        <span>
-          {comment.updatedAt}
-        </span>
+        {(comment.owner === props.user._id) &&
+          <span>{deleteJSX}</span>
+        }
       </div>
     ))
     console.log(comments)
     console.log(props.user._id)
   }
-
-  // const deleteJSX =
-  //   <div>
-  //     <button className="btn-danger deleteMeme" /* onClick={destroy} */>Delete Meme</button>
-  //     <button className="btn-warning editMeme">Edit</button>
-  //   </div>
 
   const leaveComment = (event) => {
     event.preventDefault()
