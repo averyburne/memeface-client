@@ -78,6 +78,7 @@ const Comment = (props) => {
       }
     })
       .then(getComments())
+      .then(event.target.reset())
       .catch(console.error)
   }
 
