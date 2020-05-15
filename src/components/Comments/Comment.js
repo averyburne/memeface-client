@@ -40,13 +40,13 @@ const Comment = (props) => {
 
   if (comments) {
     commentsJSX = comments.map(comment => (
-      <div key={comment._id}>
-        <li className="col-6 comment-item" key={comment._id}>
+      <div className="col-12 lg-col-6 comment-div" key={comment._id}>
+        <li className="comment-item" key={comment._id}>
           {comment.content}
         </li>
         {(comment.owner === props.user._id) &&
           <span className="comment-delete-section">
-            <button value={comment._id} className="btn-danger deleteMeme" onClick={destroy} >Delete Comment</button>
+            <button value={comment._id} className="btn-danger deleteComment" onClick={destroy} >Delete Comment</button>
             {// <button className="btn-warning editMeme">Edit</button>
             }
           </span>
