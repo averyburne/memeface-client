@@ -12,6 +12,7 @@ const Meme = (props) => {
   const [meme, setMeme] = useState(null)
   const [deleted, setDeleted] = useState(false)
   let input
+  console.log(props)
 
   useEffect(() => {
     axios({
@@ -63,7 +64,8 @@ const Meme = (props) => {
 
   return (
     <Layout>
-      <h4>{meme.title}</h4>
+      <h3>{meme.title}</h3>
+      <h6>posted by: {props.user.email}</h6>
       <img src={`${meme.memeUrl}`} height="400" width="400" alt="meme"/>
       <Comment meme={meme} user={props.user}/>
       {input}
