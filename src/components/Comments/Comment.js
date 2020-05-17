@@ -8,6 +8,7 @@ import apiUrl from '../../apiConfig'
 const Comment = (props) => {
   const [comments, setComments] = useState(null)
   const [deleted, setDeleted] = useState(null)
+  let userEmail
   let commentsJSX
 
   const getComments = () => {
@@ -24,6 +25,16 @@ const Comment = (props) => {
   useEffect(() => {
     getComments()
   }, [])
+
+  const changeCheck = (event) => {
+    console.log(event.target)
+    if (event.target.checked) {
+      userEmail = null
+    } else {
+      userEmail = props.user.email
+    }
+    console.log(userEmail)
+  }
 
   const destroy = (event) => {
     event.preventDefault()
@@ -67,7 +78,7 @@ const Comment = (props) => {
     const data = {
       content: event.target.content.value,
       meme: props.meme._id,
-      ownerEmail: props.user.email,
+      ownerEmail: userEmail,
       owner: props.user._id
     }
     axios({
@@ -91,6 +102,8 @@ const Comment = (props) => {
         <input type="text" className="comment-input" placeholder="Leave a comment" name="content"/>
         <button className='btn-primary comment-btn' type="submit">Leave Comment</button>
       </form>
+      <input type="checkbox" name="anonymous" onChange={changeCheck}/>
+      <label htmlFor="anonymous">Post Anonymously</label>
     </div>
   )
 }
