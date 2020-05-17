@@ -12,7 +12,6 @@ const Meme = (props) => {
   const [meme, setMeme] = useState(null)
   const [deleted, setDeleted] = useState(false)
   let input
-  console.log(props)
 
   useEffect(() => {
     axios({

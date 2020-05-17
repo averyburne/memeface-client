@@ -27,13 +27,11 @@ const Comment = (props) => {
   }, [])
 
   const checkForAnonymous = (event) => {
-    console.log(event.target)
     if (event.target.checked) {
       userEmail = null
     } else {
       userEmail = props.user.email
     }
-    console.log(userEmail)
   }
 
   const destroy = (event) => {
@@ -64,8 +62,6 @@ const Comment = (props) => {
         }
       </div>
     ))
-    console.log(comments)
-    console.log(props.user._id)
   }
 
   if (deleted) {
