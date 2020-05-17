@@ -94,12 +94,14 @@ const Comment = (props) => {
     <div>
       <p className="comment-header">Comments:</p>
       {commentsJSX}
-      <form onSubmit={leaveComment}>
-        <input type="text" className="comment-input" placeholder="Leave a comment" name="content"/>
+      <form className="comment-form" onSubmit={leaveComment}>
+        <textarea type="text" className="comment-input" placeholder="Leave a comment" name="content"/>
         <button className='btn-primary comment-btn' type="submit">Leave Comment</button>
       </form>
-      <input type="checkbox" name="anonymous" onChange={checkForAnonymous}/>
-      <label htmlFor="anonymous">Post Anonymously</label>
+      <div className="anonymous-div">
+        <input type="checkbox" name="anonymous" className="anonymous-checkbox" onChange={checkForAnonymous}/>
+        <label htmlFor="anonymous">Post Anonymously</label>
+      </div>
     </div>
   )
 }

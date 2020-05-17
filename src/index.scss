@@ -7,6 +7,12 @@ body {
 
 .listMeme {
   margin: 10px 0;
+  padding: 10px;
+}
+
+.listMeme:hover {
+  border: 2px solid blue;
+  border-radius: 5px;
 }
 
 .fileSelect {
@@ -60,12 +66,31 @@ body {
   margin-left: 10px;
 }
 
+.comment-form {
+  display: flexbox;
+  align-items: baseline;
+}
+
 .comment-input {
   margin-right: 10px;
+  margin-top: 10px;
+  display: flexbox;
+  height: 60px;
 }
 
 .comment-btn {
   border: 1px solid rgba(0, 0, 0, 0.6);
+  margin-bottom: 10px;
+  margin-top: -50px;
+  display: inline;
+}
+
+.anonymous-div {
+}
+
+.anonymous-checkbox {
+  height: 15px;
+  margin-right: 7px;
 }
 
 .meme-title-update {
