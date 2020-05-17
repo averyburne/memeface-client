@@ -42,7 +42,7 @@ const Comment = (props) => {
     commentsJSX = comments.map(comment => (
       <div className="col-12 lg-col-6 comment-div" key={comment._id}>
         <li className="comment-item" key={comment._id}>
-          <h5>{comment.ownerEmail}:</h5> {comment.content}
+          {(comment.ownerEmail) ? <h5>{comment.ownerEmail}: </h5> : <h5>Anonymous: </h5>}  {comment.content}
         </li>
         {(comment.owner === props.user._id) &&
           <span className="comment-delete-section">
