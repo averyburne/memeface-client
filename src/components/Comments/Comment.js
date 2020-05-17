@@ -26,7 +26,7 @@ const Comment = (props) => {
     getComments()
   }, [])
 
-  const changeCheck = (event) => {
+  const checkForAnonymous = (event) => {
     console.log(event.target)
     if (event.target.checked) {
       userEmail = null
@@ -102,7 +102,7 @@ const Comment = (props) => {
         <input type="text" className="comment-input" placeholder="Leave a comment" name="content"/>
         <button className='btn-primary comment-btn' type="submit">Leave Comment</button>
       </form>
-      <input type="checkbox" name="anonymous" onChange={changeCheck}/>
+      <input type="checkbox" name="anonymous" onChange={checkForAnonymous}/>
       <label htmlFor="anonymous">Post Anonymously</label>
     </div>
   )
