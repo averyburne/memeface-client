@@ -42,7 +42,7 @@ const Comment = (props) => {
     commentsJSX = comments.map(comment => (
       <div className="col-12 lg-col-6 comment-div" key={comment._id}>
         <li className="comment-item" key={comment._id}>
-          {comment.content}
+          <h5>{comment.ownerEmail}:</h5> {comment.content}
         </li>
         {(comment.owner === props.user._id) &&
           <span className="comment-delete-section">
@@ -67,6 +67,7 @@ const Comment = (props) => {
     const data = {
       content: event.target.content.value,
       meme: props.meme._id,
+      ownerEmail: props.user.email,
       owner: props.user._id
     }
     axios({
