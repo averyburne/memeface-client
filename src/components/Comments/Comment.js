@@ -8,7 +8,7 @@ import apiUrl from '../../apiConfig'
 const Comment = (props) => {
   const [comments, setComments] = useState(null)
   const [deleted, setDeleted] = useState(null)
-  let userEmail
+  let userEmail = props.user.email
   let commentsJSX
 
   const getComments = () => {
