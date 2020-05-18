@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Layout from '../shared/Layout'
 import Comment from '../Comments/Comment'
+import Upvote from '../Upvote/Upvote'
 
 // Import Axios:
 import axios from 'axios'
@@ -66,6 +67,7 @@ const Meme = (props) => {
       <h3>{meme.title}</h3>
       <h6>posted by: {props.user.email}</h6>
       <img src={`${meme.memeUrl}`} height="400" width="400" alt="meme"/>
+      <Upvote meme={meme} user={props.user}/>
       <Comment meme={meme} user={props.user}/>
       {input}
       <div>
