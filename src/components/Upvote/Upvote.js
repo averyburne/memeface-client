@@ -17,7 +17,7 @@ const Upvote = (props) => {
         Authorization: `Bearer ${props.user.token}`
       }
     })
-      .then(res => setUpvotes((res.data.upvotes)))
+      .then(res => setUpvotes((res.data.upvotes).filter(upvote => upvote.meme === props.meme._id)))
       .catch(console.error)
   }
   useEffect(() => {
