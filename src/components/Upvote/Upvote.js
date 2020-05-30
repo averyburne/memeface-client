@@ -7,6 +7,7 @@ import apiUrl from '../../apiConfig'
 
 const Upvote = (props) => {
   const [upvotes, setUpvotes] = useState(null)
+  let upvoteId
   let numOfUpvotes = 0
 
   const getUpvotes = () => {
@@ -24,6 +25,13 @@ const Upvote = (props) => {
     getUpvotes()
   }, [])
 
+  console.log(upvotes)
+
+  if (upvotes) {
+    upvoteId = (upvotes.filter(upvote => upvote.owner === props.user._id))
+    console.log(upvoteId[0]._id)
+  }
+
   const sendUpvote = (event) => {
     event.preventDefault()
     const data = {
@@ -32,15 +40,27 @@ const Upvote = (props) => {
       meme: props.meme._id,
       owner: props.user._id
     }
-    axios({
-      url: `${apiUrl}/upvotes`,
-      method: 'POST',
-      data: data,
-      headers: {
-        Authorization: `Bearer ${props.user.token}`
-      }
-    })
-      .then(getUpvotes())
+    if (upvoteId) {
+      axios({
+        url: `${apiUrl}/upvotes/${upvoteId[0]._id}`,
+        method: 'PATCH',
+        data: data,
+        headers: {
+          Authorization: `Bearer ${props.user.token}`
+        }
+      })
+        .then(getUpvotes())
+    } else {
+      axios({
+        url: `${apiUrl}/upvotes`,
+        method: 'POST',
+        data: data,
+        headers: {
+          Authorization: `Bearer ${props.user.token}`
+        }
+      })
+        .then(getUpvotes())
+    }
   }
 
   const sendDownvote = (event) => {
